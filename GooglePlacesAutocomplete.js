@@ -396,6 +396,10 @@ export default class GooglePlacesAutocomplete extends Component {
               var results = [];
               if (this.props.nearbyPlacesAPI === 'GoogleReverseGeocoding') {
                 results = this._filterResultsByTypes(responseJSON.results, this.props.filterReverseGeocodingByTypes);
+                if (this.props.reverseGeocodeReturnFirst) {
+                  this.props.onPress(results[0], results[0]);
+                  return;
+                }
               } else {
                 results = responseJSON.results;
               }
